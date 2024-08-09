@@ -8,16 +8,26 @@ let reset = document.getElementById("reset")
 reset.style.color="blue"
 reset.addEventListener("click", (() => letters.value = ""))
 
+let wordNum = Math.floor(3*Math.random())
+console.log(wordNum)
 let wordslist = ["hola", "como", "estas"]
-let correctWord = wordslist[0].split("")
-let guideWord = [...correctWord].sort()
-console.log(correctWord)
+
+let randomBut = document.getElementById("random")
+randomBut.style.color="gray"
+randomBut.addEventListener("click", (()=>{
+    wordNum = Math.floor(3*Math.random())
+console.log(wordNum)
+setWord(wordNum)
+}))
 
 let errorCount = document.getElementById("errorCount")
 let errors = 0
 errorCount.textContent = "Errors = " + errors;
 
-let setWord = (guideWord) => {
+let setWord = (wordNum) => {
+    correctWord = wordslist[wordNum].split("")
+    guideWord = [...correctWord].sort()
+
     word.textContent = " "
 
     guideWord.forEach((l) => {
@@ -39,4 +49,4 @@ letters.addEventListener("change", ((e) => {
     })
 }))
 
-setWord(guideWord)
+setWord(wordNum)
